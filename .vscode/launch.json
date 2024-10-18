@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch",
+            "type": "cppvsdbg",// C++ vs debug
+            "request": "launch",
+            "program": "${workspaceRoot}/2d-game.exe",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "console": "integratedTerminal"
+        }
+    ]
+}

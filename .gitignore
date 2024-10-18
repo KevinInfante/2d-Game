@@ -1,1 +1,15 @@
 note.txt
+
+*.exe
+*.ilk
+*.zip
+*.obj
+*.dll
+*.pbd
+*.lib
+*.nativecodenalaysis.xml
+build
+.vs
+c_cpp_properties.json
+settings.json
+.cland
