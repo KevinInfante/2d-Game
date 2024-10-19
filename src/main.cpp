@@ -8,6 +8,7 @@
 // ############################################################
 
 bool platform_create_window(int width, int height, char* title);
+void platform_update_window();
 
 static bool running = true;
 
@@ -23,6 +24,7 @@ static bool running = true;
 // ############################################################
 //                        windows GLOBALS
 // ############################################################
+static HWND window; //has to be global so that update_window() can access it
 
 // ############################################################
 //                        PLATFORM IMPLEMENTATION
@@ -48,7 +50,7 @@ bool platform_create_window(int width, int height, char* title){
     // WS_CAPTION | WS_SYSMENU | WS_THICKFRAME | WS_MINIMIZEBOX | WS_MAXIMIZEBOX
     int dwStyle =   WS_OVERLAPPEDWINDOW; //combines the most common options into one
 
-    HWND window = CreateWindowExA(0, classID, title, 
+    window = CreateWindowExA(0, classID, title, 
          dwStyle, // a style to the window; tells it what we wnt to show
          100,     //these next 2 params tell windows where to position the window
          100,
@@ -67,10 +69,25 @@ bool platform_create_window(int width, int height, char* title){
     return true;
 }
 
+void platform_update_window(){
+    MSG msg;
+    //we queue up messages, and we need to make sure we empty that q
+    //we peek one message, we fill in the data, then we dispatch it
+    // which is then handled by the callback
+    while(PeekMessageA(&msg, window,
+    0, //filter, we don't want to filter anything so we leave at 0
+    0, //max filter, we leave that at 0 too
+    PM_REMOVE)){
+        TranslateMessage(&msg);
+        DispatchMessageA(&msg); //calls the callback when creating the window
+    } //pm_REMOVE, whenever we peek a msg, we remove it from the q
+}
+
 int main(){
     platform_create_window(1200, 700, "Kevin Engine");
     while(running){
         //update
+        platform_update_window();
     }
     return 0;
 }
