@@ -18,8 +18,10 @@ static bool running = true;
 #ifdef _WIN32
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
-#include<windows.h>
+#include<windows.h> 
 #endif
+//in vs code, it is necessary to link user32.lib,
+//(which references user32.dll) in order to include<windows.h>
 
 // ############################################################
 //                        windows GLOBALS
