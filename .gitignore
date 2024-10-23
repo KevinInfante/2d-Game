@@ -5,7 +5,7 @@ note.txt
 *.zip
 *.obj
 *.dll
-*.pbd
+*.pdb
 *.lib
 *.nativecodenalaysis.xml
 build

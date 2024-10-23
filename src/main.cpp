@@ -1,3 +1,4 @@
+#include"KevinEngine_lib.h"
 // ############################################################
 //                        PLATFORM GLOBALS
 // ############################################################
@@ -119,6 +120,10 @@ int main(){
     while(running){
         //update
         platform_update_window();//every loop iteration, we update the window,& we check for input
+        SM_TRACE("Test");
+        SM_WARN("Test");
+        SM_ERROR("Test");
+        SM_ASSERT(false, "Assertion not hit!");
     }
     return 0;
 }
