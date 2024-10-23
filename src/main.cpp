@@ -41,6 +41,16 @@ LRESULT CALLBACK windows_window_callback(HWND window, UINT msg,
             running = false;
             break;
         }
+        case WM_KEYDOWN:
+            if(wParam == 'A') {std::cout<<"yooooooo you pressed A"<<std::endl;}
+            //note: you HAVE to use std::endl for this to appear in the console
+            // might have something to do with flushing the buffer
+            // it definitely has to do with flushing. Code below confirms it.
+            else{
+                char output = wParam;
+                std::cout<<output<<std::flush;
+            }
+            break;
         default:{
             // let window handle default input for now
             //invoke the default proc address for every other msg

@@ -10,6 +10,6 @@ libs=-luser32 # we're defining a variable, and including its contents later with
 # note, here it is necessary to do 0 spaces with operator =
 warnings=-Wno-writable-strings
 
-clang src/main.cpp -o2d-game.exe $libs $warnings
+clang -g src/main.cpp -o2d-game.exe $libs $warnings
 # -g after the clang++
 
