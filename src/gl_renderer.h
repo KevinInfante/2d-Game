@@ -21,15 +21,10 @@ static PFNGLCREATEPROGRAMPROC glCreateProgram_ptr;
 //this global function will load all of the opengl funcs that we'll use in 
 //our project
 void gl_load_function(){ 
-    //this is a windows function, it loads opengl32.dll from windows library 
-    //it returns a proc address
-    PROC proc = wglGetProcAddress("glCreateProgram" ); //glCreateProgram is the fnc we're loading
-    if(!proc){
-        SM_ASSERT(false, "Failed to load gl function %s", "glCreateProgram");
-    }
-
     //casting proc to PFNGL... and assigning it to glCreateProgram_ptr (it now points to a func)
-    glCreateProgram_ptr = (PFNGLCREATEPROGRAMPROC)proc;
+    glCreateProgram_ptr = (PFNGLCREATEPROGRAMPROC)platform_load_gl_function("glCreateProgram");
+    //this file is included in the main function, which includes platform.h, which explains why
+    // we have access to platform_load_gl_function
 }
 
 GLAPI GLuint APIENTRY glCreateProgram(void){

@@ -1,4 +1,7 @@
 #pragma once //I presume this is so that this header isn't defined more than once per file
+#define _CRT_SECURE_NO_WARNINGS
+//added the above line myself, it essentially gets rid of a lot of warnings related to
+// deprecated functions like fopen() and so so forth
 
 #include<stdio.h> //using this to write to console 
 #include<stdlib.h> //for malloc
