@@ -21,7 +21,7 @@ static PFNGLCREATEPROGRAMPROC glCreateProgram_ptr;
 //this global function will load all of the opengl funcs that we'll use in 
 //our project
 void gl_load_function(){ 
-    //this is a windows function 
+    //this is a windows function, it loads opengl32.dll from windows library 
     //it returns a proc address
     PROC proc = wglGetProcAddress("glCreateProgram" ); //glCreateProgram is the fnc we're loading
     if(!proc){
@@ -31,3 +31,11 @@ void gl_load_function(){
     //casting proc to PFNGL... and assigning it to glCreateProgram_ptr (it now points to a func)
     glCreateProgram_ptr = (PFNGLCREATEPROGRAMPROC)proc;
 }
+
+GLAPI GLuint APIENTRY glCreateProgram(void){
+    return glCreateProgram_ptr();
+}
+// note, it sounds like he is saying "glad" but it might be "glut"
+//"this is how GLAD works, GLAD defines this [proc] pointer, then GLAD will check whether it can
+// load the pointer (load the opengl function that the pointer points to) then it gives you a 
+// wrapper around that pointer that is then called the normal openGL function"

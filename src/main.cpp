@@ -20,7 +20,7 @@ static bool running = true;
 #define WIN32_LEAN_AND_MEAN
 #define NOMINMAX
 #include<windows.h> 
-#endif
+
 //in vs code, it is necessary to link user32.lib,
 //(which references user32.dll) in order to include<windows.h>
 
@@ -114,16 +114,13 @@ void platform_update_window(){
         DispatchMessageA(&msg); //calls the callback when creating the window
     } //pm_REMOVE, whenever we peek a msg, we remove it from the q
 }
+#endif
 
 int main(){
     platform_create_window(1200, 700, "Kevin Engine");
     while(running){
         //update
         platform_update_window();//every loop iteration, we update the window,& we check for input
-        SM_TRACE("Test");
-        SM_WARN("Test");
-        SM_ERROR("Test");
-        SM_ASSERT(false, "Assertion not hit!");
     }
     return 0;
 }
