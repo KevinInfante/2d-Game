@@ -2,9 +2,10 @@
 #include<iostream> //note, he doesn't have this line
 #include "platform.h"
 
-// ############################################################
-//                        WINDOWS PLATFORM 
-// ############################################################
+#define APIENTRY  //defining this to prevent glcore from redefining lean_and_mean
+#include "glcorearb.h" //this gives us all the defines, we will need it for 
+// both the windows and linux implementation
+
 #ifdef _WIN32
 #include "win32_platform.cpp"
 #endif
