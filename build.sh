@@ -9,7 +9,7 @@ libs=-"luser32 -lopengl32 -lgdi32" #
 
 # adding the -Wno flag to writable-strings
 # note, here it is necessary to do 0 spaces with operator =
-warnings="-Wno-writable-strings -Wno-format-security" #note, we added Wno-format-security
+warnings="-Wno-writable-strings -Wno-format-security -Wno-deprecated-declarations" 
 includes="-Ithird_party -Ithird_party/Include" #-I is to add search path to header files
     # note: the -I flag allows us to use angle brackets to include header files in the directory
     #"the /Include means we're including the directories to be searched for C++ or header files"

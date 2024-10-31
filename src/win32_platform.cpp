@@ -14,6 +14,7 @@
 //                        windows GLOBALS
 // ############################################################
 static HWND window; //has to be global so that update_window() can access it
+static HDC dc; //needs to be global so that the swap_buffer func can access
 
 // ############################################################
 //                        PLATFORM IMPLEMENTATION
@@ -26,6 +27,14 @@ LRESULT CALLBACK windows_window_callback(HWND window, UINT msg,
     switch(msg){
         case WM_CLOSE:{
             running = false;
+            break;
+        }
+        case WM_SIZE:{ //here we handle resizing the window
+            RECT rect = {};
+            GetClientRect(window, &rect);
+            input.screenSizeX = rect.right - rect.left;
+            input.screenSizeY = rect.bottom - rect.top;
+            //this means our input structure is always updated with the correct screensize
             break;
         }
         default:{
@@ -188,7 +197,7 @@ bool platform_create_window(int width, int height, char* title){
             return false;
         }
         //also copy and pased the part where we got the device context from the window
-        HDC dc = GetDC(window); //this is a windows function
+        dc = GetDC(window); //this is a windows function
         if(!dc){
             SM_ASSERT(false, "Failed to get DC");
             return false;
@@ -289,4 +298,8 @@ void* platform_load_gl_function(char* funName){
     }
     
     return (void*)proc; //returning a void pointer to the proc address
+}
+
+void platform_swap_buffers(){
+    SwapBuffers(dc);
 }
