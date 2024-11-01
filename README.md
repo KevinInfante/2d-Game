@@ -1,6 +1,11 @@
 # 2d-Game
-Creating a 2d game with C++
+## Description
+The objective of this project is to create a 2d game with C++, using tools such 
+as OpenGL and the windows API. Currently, the project uses the Windows API to 
+create a window, and OpenGL to render a white square on a purple background.
 
+## Build Instructions
+The current build has only been tested for Windows.
 For Linux and Mac, the "bash" command can be used to run .sh files, ignore
 the following step.
 On Windows, make sure you have a sh.exe in your path environment variables.
